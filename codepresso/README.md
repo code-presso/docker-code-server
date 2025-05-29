@@ -36,3 +36,11 @@ docker build -t s3-file-server .
 docker tag s3-file-server:latest 204573508773.dkr.ecr.ap-northeast-2.amazonaws.com/s3-file-server:latest
 docker push 204573508773.dkr.ecr.ap-northeast-2.amazonaws.com/s3-file-server:latest
 ```
+
+```bash
+cd codepresso/nginx
+aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 204573508773.dkr.ecr.ap-northeast-2.amazonaws.com
+docker build -t code-server-nginx .
+docker tag code-server-nginx:latest 204573508773.dkr.ecr.ap-northeast-2.amazonaws.com/code-server-nginx:latest
+docker push 204573508773.dkr.ecr.ap-northeast-2.amazonaws.com/code-server-nginx:latest
+```
