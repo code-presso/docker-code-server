@@ -14,7 +14,7 @@ RUN apt-get update \
  && apt-get install -y python3 python3-venv python3-pip \
           default-jdk \
           golang-go \
-          build-essential clang gcc g++ \
+          build-essential gdb clang gcc g++ \
  && rm -rf /var/lib/apt/lists/* \
          # VS Code 확장 설치
          && code-server --extensions-dir ${EXT_DIR} --install-extension ms-python.python \
