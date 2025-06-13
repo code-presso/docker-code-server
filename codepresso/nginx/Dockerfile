@@ -6,3 +6,5 @@ COPY certs/coderun.key /etc/nginx/certs/coderun.key
 
 # nginx conf
 COPY conf/code-server.conf /etc/nginx/conf.d/code-server.conf
+
+EXPOSE 8443
