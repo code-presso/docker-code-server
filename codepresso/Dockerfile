@@ -2,11 +2,12 @@ FROM lscr.io/linuxserver/code-server:latest
 
 ENV PATH=/app/code-server/bin:$PATH
 
+ENV CS_DISABLE_PROXY=1
+
 # 환경 변수 설정
 ENV PUID=1000 \
     PGID=1000 \
     TZ=Etc/UTC \
-    ABS_PROXY_BASE_PATH=/poc \
     EXT_DIR=/config/extensions
 
 USER root
