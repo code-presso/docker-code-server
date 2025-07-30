@@ -2,12 +2,6 @@ FROM lscr.io/linuxserver/code-server:latest
 
 ENV PATH=/app/code-server/bin:$PATH
 
-# 환경 변수 설정
-ENV PUID=1000 \
-    PGID=1000 \
-    TZ=Etc/UTC \
-    EXT_DIR=/config/extensions
-
 USER root
 
 RUN apt-get update \
@@ -40,12 +34,3 @@ COPY config/config.yaml /config/config.yaml
 COPY config/certs/coderun.crt /config/certs/coderun.crt
 COPY config/certs/coderun.key /config/certs/coderun.key
 COPY config/settings.json /config/settings.json
-
-# 볼륨 및 포트 노출
-VOLUME ["/config"]
-EXPOSE 8443
-EXPOSE 5173
-
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-#ENTRYPOINT ["/usr/local/bin/shutdown-on-idle.sh"]
-CMD []

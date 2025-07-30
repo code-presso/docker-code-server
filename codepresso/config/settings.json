@@ -1,3 +1,5 @@
 {
-  "workbench.colorTheme": "Default Dark+"
+  "workbench.colorTheme": "Default Dark+",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
 }
