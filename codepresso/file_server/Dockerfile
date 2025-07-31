@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 2) FastAPI 및 Uvicorn 설치
-RUN pip install --no-cache-dir fastapi uvicorn
+RUN pip install --no-cache-dir fastapi uvicorn apscheduler
 
 # 3) AWS 리전 환경 변수 설정 (선택)
 ENV AWS_REGION=ap-northeast-2 \
@@ -26,6 +26,7 @@ USER appuser
 # 5) 애플리케이션 복사 및 워킹 디렉터리 설정
 WORKDIR /app
 COPY main.py .
+COPY scheduler.py .
 
 # 6) 포트 노출 및 실행 명령어
 EXPOSE 5000

@@ -1,9 +1,11 @@
 import os
 from subprocess import run
 from typing import List
-
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
+
+import asyncio
+from scheduler import init_scheduler, shutdown
 
 app = FastAPI()
 
@@ -52,7 +54,7 @@ async def sync_from_s3(
     return JSONResponse(content=results)
 
 @app.put("/submit")
-async def upload_to_s3(
+async def submit_to_s3(
         bucketName: str = Query(..., description="S3 버킷 이름"),
         env: str = Query(..., description="환경명 (dev, prod 등)"),
         userUUID: str = Query(..., description="사용자 UUID"),
@@ -93,8 +95,18 @@ async def upload_to_s3(
             })
 
     return JSONResponse(content=results)
-
+    
 @app.get("/health")
 async def health_check():
     print("[HEALTH] Health check OK")
     return JSONResponse(content={"status": "ok"}, status_code=200)
+
+
+@app.on_event("startup")
+async def on_startup():
+    loop = asyncio.get_running_loop()
+    init_scheduler(loop).start()
+
+@app.on_event("shutdown")
+async def on_shutdown():
+    shutdown()
