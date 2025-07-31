@@ -4,7 +4,7 @@ set -e
 # Configuration
 PORT=${PORT:-8443}
 CHECK_INTERVAL=30
-IDLE_LIMIT=$((5*60))
+IDLE_LIMIT=$((30*60))
 
 last_active=$(date +%s)
 

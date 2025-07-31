@@ -1,6 +1,6 @@
 bind-addr: 0.0.0.0:8443
 auth: none
 password: root
-cert: true
-cert-file: /config/certs/coderun.crt
-cert-key:  /config/certs/coderun.key
+#cert: true
+#cert-file: /config/certs/coderun.crt
+#cert-key:  /config/certs/coderun.key
