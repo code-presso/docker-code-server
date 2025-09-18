@@ -36,7 +36,7 @@ async def sync_from_s3(
                 for d in dirs:
                     os.chmod(os.path.join(root, d), 0o777)
                 for f in files:
-                    os.chmod(os.path.join(root, f), 0o666)
+                    os.chmod(os.path.join(root, f), 0o777)
 
             results.append({
                 "taskId": tid,
